@@ -1,0 +1,29 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://scripts/high_score_display.gd" type="Script" id=1]
+[ext_resource path="res://assets/fonts/KenPixel Future Square.ttf" type="DynamicFontData" id=2]
+
+[sub_resource type="DynamicFont" id=1]
+size = 32
+outline_size = 1
+outline_color = Color( 0.396078, 0.0196078, 0.0196078, 1 )
+font_data = ExtResource( 2 )
+
+[node name="high_score_display" type="RichTextLabel"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -512.0
+margin_top = -22.5
+margin_right = 512.0
+margin_bottom = 22.5
+rect_min_size = Vector2( 512, 45 )
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_fonts/normal_font = SubResource( 1 )
+bbcode_enabled = true
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}

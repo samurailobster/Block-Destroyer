@@ -1,0 +1,36 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://scripts/game_level.gd" type="Script" id=1]
+[ext_resource path="res://scenes/block.tscn" type="PackedScene" id=2]
+[ext_resource path="res://scenes/paddle.tscn" type="PackedScene" id=3]
+[ext_resource path="res://scenes/ball.tscn" type="PackedScene" id=4]
+[ext_resource path="res://scenes/HUD.tscn" type="PackedScene" id=5]
+
+[node name="game_level" type="Node2D"]
+script = ExtResource( 1 )
+block = ExtResource( 2 )
+paddle = ExtResource( 3 )
+ball = ExtResource( 4 )
+
+[node name="ColorRect" type="ColorRect" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_right = 1024.0
+margin_bottom = 899.0
+rect_min_size = Vector2( 1024, 720 )
+color = Color( 0, 0, 0, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="block_holder" type="Node" parent="."]
+
+[node name="boundary" type="StaticBody2D" parent="."]
+position = Vector2( -2, 300 )
+
+[node name="CollisionShape2D" type="CollisionPolygon2D" parent="boundary"]
+polygon = PoolVector2Array( -23.6196, -328.997, 1056.84, -324.754, 1050.58, 598.146, 1026.77, 601.321, 1025.73, -302.127, 0.422058, -300.713, 4.48206, 598.146, -25.6786, 598.146 )
+
+[node name="HUD" parent="." instance=ExtResource( 5 )]
+
+[node name="timer" type="Timer" parent="."]

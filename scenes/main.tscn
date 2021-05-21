@@ -1,0 +1,251 @@
+[gd_scene load_steps=21 format=2]
+
+[ext_resource path="res://scripts/main.gd" type="Script" id=1]
+[ext_resource path="res://scenes/game_level.tscn" type="PackedScene" id=2]
+[ext_resource path="res://assets/fonts/KenPixel Future Square.ttf" type="DynamicFontData" id=3]
+[ext_resource path="res://scenes/high_score_display.tscn" type="PackedScene" id=4]
+[ext_resource path="res://assets/fonts/KenPixel Square.ttf" type="DynamicFontData" id=5]
+[ext_resource path="res://assets/art/element_red_square_glossy.png" type="Texture" id=6]
+[ext_resource path="res://assets/art/element_yellow_square_glossy.png" type="Texture" id=7]
+[ext_resource path="res://assets/art/element_blue_square_glossy.png" type="Texture" id=8]
+[ext_resource path="res://assets/art/element_green_square_glossy.png" type="Texture" id=9]
+[ext_resource path="res://assets/art/element_purple_cube_glossy.png" type="Texture" id=10]
+[ext_resource path="res://assets/art/element_grey_square_glossy.png" type="Texture" id=11]
+[ext_resource path="res://assets/scenesrainbow.tres" type="Animation" id=12]
+[ext_resource path="res://assets/audio/music/Space Cadet.ogg" type="AudioStream" id=13]
+
+[sub_resource type="DynamicFont" id=1]
+size = 64
+outline_size = 2
+outline_color = Color( 0.0196078, 0.517647, 0.482353, 1 )
+font_data = ExtResource( 3 )
+
+[sub_resource type="DynamicFont" id=2]
+size = 32
+outline_size = 1
+font_data = ExtResource( 5 )
+
+[sub_resource type="DynamicFont" id=3]
+size = 32
+outline_size = 1
+outline_color = Color( 0.0156863, 0.980392, 0.439216, 1 )
+font_data = ExtResource( 5 )
+
+[sub_resource type="StyleBoxFlat" id=4]
+bg_color = Color( 0.0196078, 0.352941, 0.266667, 1 )
+border_color = Color( 0.0196078, 0.917647, 0.956863, 1 )
+corner_detail = 16
+
+[sub_resource type="DynamicFont" id=5]
+size = 24
+font_data = ExtResource( 5 )
+
+[sub_resource type="DynamicFont" id=6]
+size = 20
+font_data = ExtResource( 5 )
+
+[sub_resource type="DynamicFont" id=7]
+size = 20
+font_data = ExtResource( 3 )
+
+[node name="main" type="Node"]
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_vertical_guides_": [  ]
+}
+current_level = ExtResource( 2 )
+high_score_display = ExtResource( 4 )
+
+[node name="ParallaxBackground" type="ParallaxBackground" parent="."]
+
+[node name="ParallaxLayer" type="ParallaxLayer" parent="ParallaxBackground"]
+
+[node name="background_color" type="ColorRect" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color( 0, 0, 0, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="background_blocks" type="Node" parent="."]
+
+[node name="Sprite" type="Sprite" parent="background_blocks"]
+position = Vector2( 150, 200 )
+rotation = 0.785398
+scale = Vector2( 3, 3 )
+texture = ExtResource( 8 )
+
+[node name="Sprite2" type="Sprite" parent="background_blocks"]
+position = Vector2( 300, 200 )
+rotation = 0.767945
+scale = Vector2( 3, 3 )
+texture = ExtResource( 9 )
+
+[node name="Sprite3" type="Sprite" parent="background_blocks"]
+position = Vector2( 450, 200 )
+rotation = 0.767945
+scale = Vector2( 3, 3 )
+texture = ExtResource( 11 )
+
+[node name="Sprite4" type="Sprite" parent="background_blocks"]
+position = Vector2( 600, 200 )
+rotation = 0.767945
+scale = Vector2( 3, 3 )
+texture = ExtResource( 10 )
+
+[node name="Sprite5" type="Sprite" parent="background_blocks"]
+position = Vector2( 750, 200 )
+rotation = 0.767945
+scale = Vector2( 3, 3 )
+texture = ExtResource( 6 )
+
+[node name="Sprite6" type="Sprite" parent="background_blocks"]
+position = Vector2( 900, 200 )
+rotation = 0.767945
+scale = Vector2( 3, 3 )
+texture = ExtResource( 7 )
+
+[node name="title" type="RichTextLabel" parent="."]
+anchor_right = 1.0
+margin_bottom = 98.0
+grow_horizontal = 0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_fonts/bold_font = SubResource( 1 )
+custom_fonts/normal_font = SubResource( 1 )
+custom_colors/default_color = Color( 0.0431373, 0.85098, 0.0352941, 1 )
+bbcode_enabled = true
+bbcode_text = "[b][center]BLOCK DESTROYER[/center][/b]"
+text = "BLOCK DESTROYER"
+fit_content_height = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="CenterContainer" type="CenterContainer" parent="."]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -512.0
+margin_top = 50.0
+margin_right = 512.0
+margin_bottom = 200.0
+grow_horizontal = 2
+grow_vertical = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="MarginContainer" type="MarginContainer" parent="CenterContainer"]
+margin_left = 390.0
+margin_right = 634.0
+margin_bottom = 186.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer/MarginContainer"]
+margin_right = 244.0
+margin_bottom = 186.0
+custom_constants/separation = 15
+
+[node name="start_button" type="Button" parent="CenterContainer/MarginContainer/VBoxContainer"]
+margin_right = 244.0
+margin_bottom = 54.0
+grow_horizontal = 0
+grow_vertical = 0
+rect_min_size = Vector2( 244, 54 )
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_fonts/font = SubResource( 2 )
+text = "START GAME"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="options_button" type="Button" parent="CenterContainer/MarginContainer/VBoxContainer"]
+margin_top = 69.0
+margin_right = 244.0
+margin_bottom = 123.0
+grow_horizontal = 0
+grow_vertical = 0
+rect_min_size = Vector2( 244, 54 )
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_fonts/font = SubResource( 2 )
+text = "OPTIONS"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="high_score" type="Label" parent="CenterContainer/MarginContainer/VBoxContainer"]
+margin_top = 138.0
+margin_right = 244.0
+margin_bottom = 186.0
+custom_fonts/font = SubResource( 3 )
+custom_constants/shadow_offset_x = 2
+custom_constants/shadow_offset_y = 2
+text = "HIGH SCORES"
+align = 1
+valign = 1
+
+[node name="special_fx" type="Tween" parent="."]
+
+[node name="fx_timer" type="Timer" parent="."]
+wait_time = 3.5
+
+[node name="initials" type="PopupDialog" parent="."]
+margin_right = 300.0
+margin_bottom = 75.0
+rect_min_size = Vector2( 300, 75 )
+custom_styles/panel = SubResource( 4 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VBoxContainer" type="VBoxContainer" parent="initials"]
+margin_right = 40.0
+margin_bottom = 40.0
+custom_constants/separation = 5
+
+[node name="initials" type="Label" parent="initials/VBoxContainer"]
+margin_right = 297.0
+margin_bottom = 36.0
+custom_fonts/font = SubResource( 5 )
+text = "Enter Your Initials"
+
+[node name="LineEdit" type="LineEdit" parent="initials/VBoxContainer"]
+margin_right = 58.0
+margin_bottom = 24.0
+custom_fonts/font = SubResource( 6 )
+align = 1
+max_length = 4
+expand_to_text_length = true
+
+[node name="info_label" type="Label" parent="."]
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_top = -29.0
+grow_horizontal = 0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_fonts/font = SubResource( 7 )
+custom_colors/font_color = Color( 1, 0, 0, 1 )
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false,
+"_editor_description_": ""
+}
+
+[node name="anim" type="AnimationPlayer" parent="."]
+anims/rainbow = ExtResource( 12 )
+
+[node name="main_music" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 13 )
+volume_db = -20.0
+autoplay = true
+
+[connection signal="pressed" from="CenterContainer/MarginContainer/VBoxContainer/start_button" to="." method="_on_start_button_pressed"]
+[connection signal="timeout" from="fx_timer" to="." method="_on_fx_timer_timeout"]
+[connection signal="text_entered" from="initials/VBoxContainer/LineEdit" to="." method="_on_LineEdit_text_entered"]
