@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=2]
+[gd_scene load_steps=22 format=2]
 
 [ext_resource path="res://scripts/main.gd" type="Script" id=1]
 [ext_resource path="res://scenes/game_level.tscn" type="PackedScene" id=2]
@@ -44,6 +44,12 @@ font_data = ExtResource( 5 )
 size = 20
 font_data = ExtResource( 5 )
 
+[sub_resource type="DynamicFont" id=8]
+size = 24
+outline_size = 1
+outline_color = Color( 0.313726, 1, 0, 1 )
+font_data = ExtResource( 5 )
+
 [sub_resource type="DynamicFont" id=7]
 size = 20
 font_data = ExtResource( 3 )
@@ -55,6 +61,10 @@ __meta__ = {
 }
 current_level = ExtResource( 2 )
 high_score_display = ExtResource( 4 )
+
+[node name="main_music" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 13 )
+volume_db = -20.0
 
 [node name="ParallaxBackground" type="ParallaxBackground" parent="."]
 
@@ -221,6 +231,41 @@ align = 1
 max_length = 4
 expand_to_text_length = true
 
+[node name="options" type="PopupPanel" parent="."]
+visible = true
+margin_right = 40.0
+margin_bottom = 40.0
+rect_min_size = Vector2( 300, 300 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ColorRect" type="ColorRect" parent="options"]
+margin_left = 20.0
+margin_top = 20.0
+margin_right = 222.0
+margin_bottom = 64.0
+color = Color( 0.0156863, 0.223529, 0.0117647, 1 )
+
+[node name="MarginContainer" type="MarginContainer" parent="options"]
+margin_left = 20.0
+margin_top = 20.0
+margin_right = 20.0
+margin_bottom = 20.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="CheckBox" type="CheckBox" parent="options/MarginContainer"]
+margin_right = 202.0
+margin_bottom = 44.0
+custom_fonts/font = SubResource( 8 )
+text = "Mute Music"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
 [node name="info_label" type="Label" parent="."]
 anchor_top = 1.0
 anchor_right = 1.0
@@ -241,11 +286,8 @@ __meta__ = {
 [node name="anim" type="AnimationPlayer" parent="."]
 anims/rainbow = ExtResource( 12 )
 
-[node name="main_music" type="AudioStreamPlayer" parent="."]
-stream = ExtResource( 13 )
-volume_db = -20.0
-autoplay = true
-
 [connection signal="pressed" from="CenterContainer/MarginContainer/VBoxContainer/start_button" to="." method="_on_start_button_pressed"]
+[connection signal="pressed" from="CenterContainer/MarginContainer/VBoxContainer/options_button" to="." method="_on_options_button_pressed"]
 [connection signal="timeout" from="fx_timer" to="." method="_on_fx_timer_timeout"]
 [connection signal="text_entered" from="initials/VBoxContainer/LineEdit" to="." method="_on_LineEdit_text_entered"]
+[connection signal="toggled" from="options/MarginContainer/CheckBox" to="." method="_on_CheckBox_toggled"]

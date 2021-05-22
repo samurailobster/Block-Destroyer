@@ -5,13 +5,17 @@ onready var blocks_container := $background_blocks
 onready var special_fx := $special_fx
 onready var fx_timer := $fx_timer
 onready var user_name_entry := $initials
+onready var options_panel := $options
 onready var info_label := $info_label
 onready var animation := $anim
+onready var game_music := $main_music
 
 export (PackedScene) var current_level
 export (PackedScene) var high_score_display
 
 func _ready():
+	if Global.game_music:
+		game_music.play()
 	display_high_scores()
 	fx_timer.start()
 	setup_info_label()
@@ -64,3 +68,18 @@ func _on_LineEdit_text_entered(new_text):
 
 func begin_game():
 	get_tree().change_scene_to(current_level)
+
+func _on_options_button_pressed():
+	options_panel.popup_centered()
+	options_panel.show()
+
+#CLEAN THIS UP
+func _on_CheckBox_toggled(button_pressed):
+	if button_pressed and game_music.is_playing():
+		game_music.stop()
+		game_music.autoplay = false
+		Global.game_music = false
+	elif !button_pressed and !game_music.is_playing():
+		game_music.play()
+		Global.game_music = true
+		game_music.autoplay = true

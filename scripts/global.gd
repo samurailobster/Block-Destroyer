@@ -9,6 +9,9 @@ var score := 0
 var high_score := 0
 var score_data := {}
 
+#game options
+var game_music := true
+
 func _ready():
 	load_high_scores()
 
