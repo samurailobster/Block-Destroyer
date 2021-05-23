@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=2]
+[gd_scene load_steps=21 format=2]
 
 [ext_resource path="res://scripts/main.gd" type="Script" id=1]
 [ext_resource path="res://scenes/game_level.tscn" type="PackedScene" id=2]
@@ -31,11 +31,6 @@ outline_size = 1
 outline_color = Color( 0.0156863, 0.980392, 0.439216, 1 )
 font_data = ExtResource( 5 )
 
-[sub_resource type="StyleBoxFlat" id=4]
-bg_color = Color( 0.0196078, 0.352941, 0.266667, 1 )
-border_color = Color( 0.0196078, 0.917647, 0.956863, 1 )
-corner_detail = 16
-
 [sub_resource type="DynamicFont" id=5]
 size = 24
 font_data = ExtResource( 5 )
@@ -44,13 +39,13 @@ font_data = ExtResource( 5 )
 size = 20
 font_data = ExtResource( 5 )
 
-[sub_resource type="DynamicFont" id=8]
-size = 24
+[sub_resource type="DynamicFont" id=7]
+size = 20
 outline_size = 1
 outline_color = Color( 0.313726, 1, 0, 1 )
 font_data = ExtResource( 5 )
 
-[sub_resource type="DynamicFont" id=7]
+[sub_resource type="DynamicFont" id=8]
 size = 20
 font_data = ExtResource( 3 )
 
@@ -64,7 +59,7 @@ high_score_display = ExtResource( 4 )
 
 [node name="main_music" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 13 )
-volume_db = -20.0
+volume_db = -25.0
 
 [node name="ParallaxBackground" type="ParallaxBackground" parent="."]
 
@@ -150,8 +145,9 @@ __meta__ = {
 
 [node name="MarginContainer" type="MarginContainer" parent="CenterContainer"]
 margin_left = 390.0
+margin_top = 7.0
 margin_right = 634.0
-margin_bottom = 186.0
+margin_bottom = 193.0
 
 [node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer/MarginContainer"]
 margin_right = 244.0
@@ -203,18 +199,30 @@ valign = 1
 [node name="fx_timer" type="Timer" parent="."]
 wait_time = 3.5
 
-[node name="initials" type="PopupDialog" parent="."]
+[node name="initials" type="PopupPanel" parent="."]
 margin_right = 300.0
 margin_bottom = 75.0
 rect_min_size = Vector2( 300, 75 )
-custom_styles/panel = SubResource( 4 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="ColorRect" type="ColorRect" parent="initials"]
+margin_left = 4.0
+margin_top = 4.0
+margin_right = 301.0
+margin_bottom = 85.0
+color = Color( 0.0235294, 0.321569, 0.0156863, 1 )
+__meta__ = {
+"_edit_use_anchors_": false,
+"_editor_description_": ""
+}
+
 [node name="VBoxContainer" type="VBoxContainer" parent="initials"]
-margin_right = 40.0
-margin_bottom = 40.0
+margin_left = 4.0
+margin_top = 4.0
+margin_right = 301.0
+margin_bottom = 85.0
 custom_constants/separation = 5
 
 [node name="initials" type="Label" parent="initials/VBoxContainer"]
@@ -222,17 +230,19 @@ margin_right = 297.0
 margin_bottom = 36.0
 custom_fonts/font = SubResource( 5 )
 text = "Enter Your Initials"
+align = 1
+valign = 1
 
 [node name="LineEdit" type="LineEdit" parent="initials/VBoxContainer"]
-margin_right = 58.0
-margin_bottom = 24.0
+margin_top = 41.0
+margin_right = 297.0
+margin_bottom = 81.0
 custom_fonts/font = SubResource( 6 )
 align = 1
 max_length = 4
 expand_to_text_length = true
 
 [node name="options" type="PopupPanel" parent="."]
-visible = true
 margin_right = 40.0
 margin_bottom = 40.0
 rect_min_size = Vector2( 300, 300 )
@@ -241,30 +251,42 @@ __meta__ = {
 }
 
 [node name="ColorRect" type="ColorRect" parent="options"]
-margin_left = 20.0
-margin_top = 20.0
-margin_right = 222.0
-margin_bottom = 64.0
+margin_left = 4.0
+margin_top = 4.0
+margin_right = 296.0
+margin_bottom = 296.0
 color = Color( 0.0156863, 0.223529, 0.0117647, 1 )
 
 [node name="MarginContainer" type="MarginContainer" parent="options"]
-margin_left = 20.0
-margin_top = 20.0
-margin_right = 20.0
-margin_bottom = 20.0
+margin_left = 4.0
+margin_top = 4.0
+margin_right = 296.0
+margin_bottom = 296.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="CheckBox" type="CheckBox" parent="options/MarginContainer"]
-margin_right = 202.0
-margin_bottom = 44.0
-custom_fonts/font = SubResource( 8 )
+[node name="VBoxContainer" type="VBoxContainer" parent="options/MarginContainer"]
+margin_right = 292.0
+margin_bottom = 292.0
+
+[node name="mute_music" type="CheckBox" parent="options/MarginContainer/VBoxContainer"]
+margin_right = 292.0
+margin_bottom = 38.0
+custom_fonts/font = SubResource( 7 )
 text = "Mute Music"
 align = 1
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="clear_high_scores" type="CheckBox" parent="options/MarginContainer/VBoxContainer"]
+margin_top = 42.0
+margin_right = 292.0
+margin_bottom = 80.0
+custom_fonts/font = SubResource( 7 )
+text = "Clear High Scores"
+align = 1
 
 [node name="info_label" type="Label" parent="."]
 anchor_top = 1.0
@@ -274,7 +296,7 @@ margin_top = -29.0
 grow_horizontal = 0
 size_flags_horizontal = 3
 size_flags_vertical = 3
-custom_fonts/font = SubResource( 7 )
+custom_fonts/font = SubResource( 8 )
 custom_colors/font_color = Color( 1, 0, 0, 1 )
 align = 1
 valign = 1
@@ -290,4 +312,5 @@ anims/rainbow = ExtResource( 12 )
 [connection signal="pressed" from="CenterContainer/MarginContainer/VBoxContainer/options_button" to="." method="_on_options_button_pressed"]
 [connection signal="timeout" from="fx_timer" to="." method="_on_fx_timer_timeout"]
 [connection signal="text_entered" from="initials/VBoxContainer/LineEdit" to="." method="_on_LineEdit_text_entered"]
-[connection signal="toggled" from="options/MarginContainer/CheckBox" to="." method="_on_CheckBox_toggled"]
+[connection signal="toggled" from="options/MarginContainer/VBoxContainer/mute_music" to="." method="_on_CheckBox_toggled"]
+[connection signal="toggled" from="options/MarginContainer/VBoxContainer/clear_high_scores" to="." method="_on_clear_high_scores_toggled"]

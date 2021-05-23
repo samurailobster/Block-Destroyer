@@ -83,3 +83,6 @@ func _on_CheckBox_toggled(button_pressed):
 		game_music.play()
 		Global.game_music = true
 		game_music.autoplay = true
+
+func _on_clear_high_scores_toggled(button_pressed):
+	Global.wipe_high_scorefile()
