@@ -16,6 +16,8 @@ export (PackedScene) var high_score_display
 func _ready():
 	if Global.game_music:
 		game_music.play()
+	else:
+		game_music.stop()
 	display_high_scores()
 	fx_timer.start()
 	setup_info_label()
@@ -73,16 +75,18 @@ func _on_options_button_pressed():
 	options_panel.popup_centered()
 	options_panel.show()
 
-#CLEAN THIS UP
-func _on_CheckBox_toggled(button_pressed):
-	if button_pressed and game_music.is_playing():
+func _on_CheckBox_toggled(button_pressed : bool):
+	if button_pressed:
 		game_music.stop()
-		game_music.autoplay = false
 		Global.game_music = false
-	elif !button_pressed and !game_music.is_playing():
+	else:
 		game_music.play()
 		Global.game_music = true
-		game_music.autoplay = true
 
 func _on_clear_high_scores_toggled(button_pressed):
 	Global.wipe_high_scorefile()
+	#clears the high score objects from the main menu
+	for _each in center_containter.get_children():
+		var _eachtype = _each.get_class()
+		if _eachtype == "RichTextLabel":
+			_each.queue_free()
