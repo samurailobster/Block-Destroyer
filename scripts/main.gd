@@ -74,14 +74,20 @@ func begin_game():
 func _on_options_button_pressed():
 	options_panel.popup_centered()
 	options_panel.show()
+	$options/MarginContainer/VBoxContainer/mute_music.pressed = Global.game_music
 
 func _on_CheckBox_toggled(button_pressed : bool):
 	if button_pressed:
+		print(button_pressed)
+		print(Global.game_music)
 		game_music.stop()
 		Global.game_music = false
 	else:
+		print(button_pressed)
+		print(Global.game_music)
 		game_music.play()
 		Global.game_music = true
+	Global.save_config()
 
 func _on_clear_high_scores_toggled(button_pressed):
 	Global.wipe_high_scorefile()

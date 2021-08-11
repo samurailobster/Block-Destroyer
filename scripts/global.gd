@@ -1,5 +1,7 @@
 extends Node
 
+const CONFIG_FILE := "user://config.cfg"
+
 const HIGH_SCORE_FILE := "user://high_scores.txt"
 const HIGH_SCORE_LIMIT := 5
 const UNKNOWN_PLAYER := "UNKN"
@@ -13,7 +15,26 @@ var score_data := {}
 var game_music := true
 
 func _ready():
+	load_config()
 	load_high_scores()
+
+func load_config():
+	var config = ConfigFile.new()
+	var err = config.load(CONFIG_FILE)
+	if err == OK:
+		game_music = config.get_value("audio", "game_music", true)
+	else:
+		print("No config file found.")
+
+func save_config():
+	var config = ConfigFile.new()
+	var err = config.load(CONFIG_FILE)
+	if err == OK:
+		if not config.has_section_key("audio", "game_music"):
+			config.set_value("audio", "game_music", game_music)
+		config.save(CONFIG_FILE)
+	else:
+		print("No config file found.")
 
 func load_high_scores():
 	var high_score_file = File.new()
