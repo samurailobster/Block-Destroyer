@@ -42,6 +42,7 @@ func create_block_matrix():
 			block_matrix.append(new_block)
 			new_block.start(y)
 			new_block.connect("score", self, "update_score")
+			new_block.connect("check_blocks", self, "whats_left")
 			new_block.position = Vector2(starting_x_pos + increment_x, starting_y_pos + increment_y)
 			increment_x += 32 + block_space
 		increment_x = 0
@@ -68,6 +69,12 @@ func check_high_score():
 
 func _on_game_over():
 	Global.save_high_score()
-	timer.wait_time = 1.0
+	timer.wait_time = 3.0
 	timer.start()
 	get_tree().change_scene("res://scenes/main.tscn")
+
+func whats_left():
+	if block_matrix.size() == 0:
+		$winner.text = "You win!"
+		_on_game_over()
+

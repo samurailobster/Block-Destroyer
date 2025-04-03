@@ -1,6 +1,8 @@
 extends StaticBody2D 
 
+
 signal score
+signal check_blocks
 
 onready var sprite := $Sprite
 onready var tween := $Tween
@@ -32,4 +34,5 @@ func disappear():
 	tween.start()
 
 func _on_Tween_tween_completed(_object, _key):
+	emit_signal("check_blocks")
 	queue_free()

@@ -117,9 +117,9 @@ margin_bottom = 98.0
 grow_horizontal = 0
 size_flags_horizontal = 3
 size_flags_vertical = 3
+custom_colors/default_color = Color( 0.0431373, 0.85098, 0.0352941, 1 )
 custom_fonts/bold_font = SubResource( 1 )
 custom_fonts/normal_font = SubResource( 1 )
-custom_colors/default_color = Color( 0.0431373, 0.85098, 0.0352941, 1 )
 bbcode_enabled = true
 bbcode_text = "[b][center]BLOCK DESTROYER[/center][/b]"
 text = "BLOCK DESTROYER"
@@ -139,9 +139,6 @@ margin_right = 512.0
 margin_bottom = 200.0
 grow_horizontal = 2
 grow_vertical = 2
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="MarginContainer" type="MarginContainer" parent="CenterContainer"]
 margin_left = 390.0
@@ -186,9 +183,9 @@ __meta__ = {
 margin_top = 138.0
 margin_right = 244.0
 margin_bottom = 186.0
-custom_fonts/font = SubResource( 3 )
 custom_constants/shadow_offset_x = 2
 custom_constants/shadow_offset_y = 2
+custom_fonts/font = SubResource( 3 )
 text = "HIGH SCORES"
 align = 1
 valign = 1
@@ -242,6 +239,7 @@ max_length = 4
 expand_to_text_length = true
 
 [node name="options" type="PopupPanel" parent="."]
+visible = true
 margin_right = 40.0
 margin_bottom = 40.0
 rect_min_size = Vector2( 300, 300 )
@@ -295,8 +293,8 @@ margin_top = -29.0
 grow_horizontal = 0
 size_flags_horizontal = 3
 size_flags_vertical = 3
-custom_fonts/font = SubResource( 7 )
 custom_colors/font_color = Color( 1, 0, 0, 1 )
+custom_fonts/font = SubResource( 7 )
 align = 1
 valign = 1
 __meta__ = {

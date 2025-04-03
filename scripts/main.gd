@@ -41,8 +41,10 @@ func rotate_blocks():
 
 func spin_block(_block):
 	randomize()
-	var random_rotation := rand_range(-360, 360)
-	special_fx.interpolate_property(_block, "rotation_degrees", _block.rotation_degrees, _block.rotation_degrees + random_rotation, 2, Tween.TRANS_ELASTIC, Tween.EASE_IN_OUT)
+	var random_rotation := rand_range(-360, sin(360))
+	special_fx.interpolate_property(_block, "rotation_degrees", _block.rotation_degrees, 
+									_block.rotation_degrees + random_rotation, 2, 
+									Tween.TRANS_ELASTIC, Tween.EASE_IN_OUT)
 	special_fx.start()
 	
 func display_high_scores():
@@ -78,13 +80,9 @@ func _on_options_button_pressed():
 
 func _on_CheckBox_toggled(button_pressed : bool):
 	if button_pressed:
-		print(button_pressed)
-		print(Global.game_music)
 		game_music.stop()
 		Global.game_music = false
 	else:
-		print(button_pressed)
-		print(Global.game_music)
 		game_music.play()
 		Global.game_music = true
 	Global.save_config()
